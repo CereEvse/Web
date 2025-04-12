@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @SequenceGenerator(sequenceName = "user_id_seq", name = "user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     private Long id_user;
-    private String email;
+    private String login;
     private String password;
 
     @OneToMany (mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
@@ -54,7 +54,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return login;
     }
 
     @Override

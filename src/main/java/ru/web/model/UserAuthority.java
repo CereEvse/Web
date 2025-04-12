@@ -2,7 +2,7 @@ package ru.web.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public class UserAuthority implements GrantedAuthority {
+public enum UserAuthority implements GrantedAuthority {
 
     USER, // Роль обычного пользователя
     EMPLOYEE, // Роль разработчика

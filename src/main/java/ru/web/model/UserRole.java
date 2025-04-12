@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class UserRole {
+
     @Id
     @GeneratedValue(generator = "user_role_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "user_role_id_seq", sequenceName = "user_role_id_seq", allocationSize = 1)
@@ -25,4 +26,8 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+//    public UserAuthority getUserAuthority() {
+//        return userAuthority;
+//    }
 }

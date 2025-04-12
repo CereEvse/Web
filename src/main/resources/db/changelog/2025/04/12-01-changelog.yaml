@@ -1,0 +1,167 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1744438767522-1
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: id_addr_seq
+            startValue: 1
+  - changeSet:
+      id: 1744438767522-2
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1744438767522-3
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: user_role_id_seq
+            startValue: 1
+  - changeSet:
+      id: 1744438767522-4
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_resume
+                  name: id_resume
+                  type: BIGINT
+              - column:
+                  name: id_user
+                  type: BIGINT
+              - column:
+                  name: id_status_resume
+                  type: BIGINT
+              - column:
+                  name: work_experience
+                  type: INT
+              - column:
+                  name: portfolio
+                  type: VARCHAR(255)
+              - column:
+                  name: skills
+                  type: VARCHAR(255)
+              - column:
+                  name: comment
+                  type: VARCHAR(255)
+            tableName: resume
+  - changeSet:
+      id: 1744438767522-5
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_status
+                  name: id_status_resume
+                  type: BIGINT
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+            tableName: status
+  - changeSet:
+      id: 1744438767522-6
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_user_roles
+                  name: id_user_role
+                  type: BIGINT
+              - column:
+                  name: user_authority
+                  type: SMALLINT
+              - column:
+                  name: user_id
+                  type: BIGINT
+            tableName: user_roles
+  - changeSet:
+      id: 1744438767522-7
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users
+                  name: id_user
+                  type: BIGINT
+              - column:
+                  name: login
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: surname
+                  type: VARCHAR(255)
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: middle_name
+                  type: VARCHAR(255)
+              - column:
+                  name: telephone
+                  type: VARCHAR(255)
+            tableName: users
+  - changeSet:
+      id: 1744438767522-8
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_status_resume
+            baseTableName: resume
+            constraintName: FK_RESUME_ON_ID_STATUSRESUME
+            referencedColumnNames: id_status_resume
+            referencedTableName: status
+  - changeSet:
+      id: 1744438767522-9
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id_user
+            baseTableName: resume
+            constraintName: FK_RESUME_ON_ID_USER
+            referencedColumnNames: id_user
+            referencedTableName: users
+  - changeSet:
+      id: 1744438767522-10
+      author: ??????
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_roles
+            constraintName: FK_USER_ROLES_ON_USER
+            referencedColumnNames: id_user
+            referencedTableName: users
+
