@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональная фриланс-платформа | Наймите экспертов или найдите работу</title>
+    <meta name="description" content="Фриланс-платформа для поиска специалистов и проектов. Разработка, дизайн, маркетинг, копирайтинг и другие услуги.">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        color: #333;
+        line-height: 1.6;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2a52be;
+        text-decoration: none;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+
+    nav ul li {
+        margin-left: 25px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .auth-buttons a {
+        margin-left: 15px;
+        padding: 8px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .hero {
+        background-color: #f8f9fa;
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        color: #222;
+    }
+
+    .hero p {
+        font-size: 18px;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        color: #555;
+    }
+
+    .search-bar {
+        max-width: 700px;
+        margin: 0 auto;
+        display: flex;
+    }
+
+    .search-bar input {
+        flex: 1;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+        font-size: 16px;
+    }
+
+    .search-bar button {
+        padding: 15px 25px;
+        background-color: #2a52be;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .categories {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+        color: #222;
+    }
+
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .category-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .category-card i {
+        font-size: 40px;
+        color: #2a52be;
+        margin-bottom: 15px;
+    }
+
+    .category-card h3 {
+        margin-bottom: 10px;
+    }
+
+    .how-it-works {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+    }
+
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+
+    .step {
+        flex: 1;
+        min-width: 250px;
+        text-align: center;
+        padding: 0 15px;
+        margin-bottom: 20px;
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        background-color: #2a52be;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .featured-freelancers {
+        padding: 60px 0;
+    }
+
+    .freelancers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .freelancer-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .freelancer-img {
+        height: 200px;
+        background-color: #eee;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .freelancer-info {
+        padding: 20px;
+    }
+
+    .freelancer-info h3 {
+        margin-bottom: 5px;
+    }
+
+    .freelancer-info p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .rating {
+        color: #ffc107;
+        margin-bottom: 15px;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .skill {
+        background-color: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .view-profile {
+        display: inline-block;
+        padding: 8px 20px;
+        background-color: #2a52be;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body>
+<header th:insert="blocks/header :: header"></header>
+<main>
+
+
+    <section class="hero">
+        <div class="container">
+            <h1>Найдите идеального фрилансера или работу</h1>
+            <p>Соединяем талантливых специалистов с клиентами по всему миру. Более 50 категорий услуг.</p>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Популярные категории</h2>
+                <p>Выберите категорию, которая соответствует вашим потребностям</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Разработка</h3>
+                    <p>Веб и мобильные приложения, программирование, скрипты</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Дизайн</h3>
+                    <p>Логотипы, брендинг, UI/UX дизайн, графика</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Маркетинг</h3>
+                    <p>SMM, SEO, контент-маркетинг, email-маркетинг</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Копирайтинг</h3>
+                    <p>Тексты, статьи, слоганы, переводы, редактирование</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Видео и анимация</h3>
+                    <p>Монтаж, анимация, моушн-графика, 3D моделирование</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Бухгалтерия</h3>
+                    <p>Консультации, ведение учета, налоговые вопросы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Как это работает</h2>
+                <p>Простой процесс для клиентов и фрилансеров</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Создайте проект</h3>
+                    <p>Опишите вашу задачу, установите бюджет и сроки</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Выберите фрилансера</h3>
+                    <p>Просмотрите предложения и портфолио специалистов</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Безопасная оплата</h3>
+                    <p>Оплачивайте только после принятия работы</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Получите результат</h3>
+                    <p>Примите работу и оставьте отзыв</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-freelancers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Рекомендуемые фрилансеры</h2>
+                <p>Топовые специалисты с высокими оценками</p>
+            </div>
+            <div class="freelancers-grid">
+                <div class="freelancer-card">
+                    <div class="freelancer-img" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Алексей Петров</h3>
+                        <p>Веб-разработчик</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (42 отзыва)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill">HTML/CSS</span>
+                            <span class="skill">JavaScript</span>
+                            <span class="skill">React</span>
+                        </div>
+                        <a href="#" class="view-profile">Профиль</a>
+                    </div>
+                </div>
+                <div class="freelancer-card">
+                    <div class="freelancer-img" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Елена Смирнова</h3>
+                        <p>Графический дизайнер</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (28 отзывов)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill">Photoshop</span>
+                            <span class="skill">Illustrator</span>
+                            <span class="skill">Branding</span>
+                        </div>
+                        <a href="#" class="view-profile">Профиль</a>
+                    </div>
+                </div>
+                <div class="freelancer-card">
+                    <div class="freelancer-img" style="background-image: url('https://randomuser.me/api/portraits/men/75.jpg');"></div>
+                    <div class="freelancer-info">
+                        <h3>Дмитрий Иванов</h3>
+                        <p>Копирайтер</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.2 (35 отзывов)</span>
+                        </div>
+                        <div class="skills">
+                            <span class="skill">SEO-тексты</span>
+                            <span class="skill">Рерайтинг</span>
+                            <span class="skill">Продающие тексты</span>
+                        </div>
+                        <a href="#" class="view-profile">Профиль</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>
