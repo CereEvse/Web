@@ -17,13 +17,13 @@
         <p th:text="${resume.comment}"></p>
         <p th:text="${resume.status.statusTitle}"></p>
     </div>
-<!--    <div th:each="resume : ${resumes}" class="alert alert-info mt-2">-->
-<!--        <h3>-->
-<!--            <span th:text="${resume.user.Surname} + ' ' + ${resume.user.Name} + ' ' + ${resume.user.Middlename}"></span>-->
-<!--        </h3>-->
-<!--        <p th:text="'Почта: ' + ${resume.user.login}"></p>-->
-<!--        <a th:href="'/resume/' + ${resume.idResume}" class="btn btn-warning"> Детальнее</a>-->
-<!--    </div>-->
+    <div th:each="resume : ${resumes}" class="alert alert-info mt-2">
+        <h3>
+            <span th:text="${resume.user.Surname} + ' ' + ${resume.user.Name} + ' ' + ${resume.user.Middlename}"></span>
+        </h3>
+       <p th:text="'Почта: ' + ${resume.user.login}"></p>
+       <a th:href="'/resume/' + ${resume.idResume}" class="btn btn-warning"> Детальнее</a>
+   </div>
 </div>
 
 <div th:insert="~{blocks/footer :: footer}"></div>
