@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.exceptions.ExceptionHandler;
 import com.example.demo.model.Resume;
 import com.example.demo.model.Status;
+import com.example.demo.model.User;
 import com.example.demo.repository.ResumeRepository;
 import com.example.demo.repository.StatusRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class ResumeServiceImpl implements ResumeService {
+
     private final ExceptionHandler exceptionHandler;
     private final ResumeRepository resumeRepository;
     private final StatusRepository statusRepository;
@@ -62,4 +64,9 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public void deleteResumeById(Long id) {resumeRepository.deleteById(id);}
+
+    @Override
+    public Optional<Resume> findByUserId(Long userId) {
+        return resumeRepository.findByUserId(userId);
+    }
 }

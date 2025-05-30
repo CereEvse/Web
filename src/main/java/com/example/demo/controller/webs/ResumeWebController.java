@@ -35,15 +35,15 @@ public class ResumeWebController {
         return "resume-add";
     }
 
-    @GetMapping("/status/add")
-    public String statusAdd(Model model) {return "status-add";}
-
-    @PostMapping("/status/add")
-    public String addStatus(@RequestParam String statusTitle, Model model) {
-        Status status = new Status(statusTitle);
-        statusRepository.save(status);
-        return "redirect:/resume/add";
-    }
+//    @GetMapping("/status/add")
+//    public String statusAdd(Model model) {return "status-add";}
+//
+//    @PostMapping("/status/add")
+//    public String addStatus(@RequestParam String statusTitle, Model model) {
+//        Status status = new Status(statusTitle);
+//        statusRepository.save(status);
+//        return "redirect:/resume/add";
+//    }
 
     @PostMapping("/resume/add")
     public String addResume(@RequestParam Long statusId,
@@ -53,7 +53,7 @@ public class ResumeWebController {
 
         Resume resume = new Resume(workExperience, portfolio, skills, comment, status);
         resumeRepository.save(resume);
-        return "redirect:/resume";
+        return "redirect:/lk";
     }
 
     @GetMapping("/resume/{id}")
@@ -87,7 +87,7 @@ public class ResumeWebController {
         Status status = statusRepository.findById(statusId).orElseThrow();
         resume.setStatus(status);
         resumeRepository.save(resume);
-        return "redirect:/resume/" + idresume;
+        return "redirect:/lk" + idresume;
     }
 
     @Transactional
@@ -95,7 +95,7 @@ public class ResumeWebController {
     public String resumeDelete(@PathVariable(value = "id") long idResume) {
         Resume resume = resumeRepository.findById(idResume).orElseThrow();
         resumeRepository.delete(resume);
-        return "redirect:/resume";
+        return "redirect:/lk";
     }
 
 }

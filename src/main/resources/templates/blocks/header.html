@@ -1,13 +1,14 @@
 <div th:fragment="header">
     <div class="container">
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <h5 class="my-0 mr-md-auto font-weight-normal">Freelance</h5>
+            <a href="/home" class="d-flex align-items-center text-dark text-decoration-none">
+                <h5 class="my-0 mr-md-auto font-weight-normal">Freelance</h5>
+            </a>
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="nav-link px-2 text-secondary" href="/home">Главная</a>
-                <a class="nav-link px-2 text-black" href="/resume">Резюме</a>
-                <a class="btn btn-outline-primary" href="/lk">Личный кабинет</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/home">Главная</a>
+                <a class="me-3 py-2 text-dark text-decoration-none" href="/resume">Резюме</a>
+                <a class="btn btn-outline-primary me-2" href="/lk">Личный кабинет</a>
                 <a class="btn btn-outline-primary" href="/">Выход</a>
-                </div>
             </nav>
         </div>
     </div>

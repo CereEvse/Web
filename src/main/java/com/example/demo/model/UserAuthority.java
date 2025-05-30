@@ -5,8 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 public enum UserAuthority implements GrantedAuthority {
 
     USER, // Роль обычного пользователя
-    EMPLOYEE, // Роль разработчика
-    CUSTOMER,  // Роль заказчика
     ADMIN;
 
     @Override

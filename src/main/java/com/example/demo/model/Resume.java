@@ -26,9 +26,6 @@ public class Resume {
     @JoinColumn(name = "id_status")
     private Status status;
 
-//    @Enumerated
-//    private Status status;
-
     @Column(name="work_experience")
     private Integer workExperience;
 

@@ -13,6 +13,8 @@ import com.example.demo.model.UserRole;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.UserRoleRepository;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -43,5 +45,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return userRepository.findByLogin(login).orElseThrow(() -> new UsernameNotFoundException(login));
+    }
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 }

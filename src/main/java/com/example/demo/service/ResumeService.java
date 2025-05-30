@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Resume;
+import com.example.demo.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,4 +12,5 @@ public interface ResumeService {
     Optional<Resume> getResumeById(Long id);
     Optional<Resume> putResumeById(Long id, Resume updatedResume);
     void deleteResumeById(Long id);
+    Optional<Resume> findByUserId(Long userId);
 }
