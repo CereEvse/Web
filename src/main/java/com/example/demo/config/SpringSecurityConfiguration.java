@@ -21,9 +21,10 @@ public class SpringSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/resume/pending").hasAuthority("ADMIN")
                         .requestMatchers("/lk", "/lk/**").authenticated()
                         .requestMatchers("/login", "/registration").permitAll()
+                        .requestMatchers("/resume/add").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -32,7 +33,7 @@ public class SpringSecurityConfiguration {
                         .successHandler((request, response, authentication) -> {
                             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
                             if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
-                                response.sendRedirect("/admin/resume-list");
+                                response.sendRedirect("/resume/pending");
                             } else {
                                 response.sendRedirect("/lk");
                             }

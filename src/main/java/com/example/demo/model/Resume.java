@@ -44,6 +44,7 @@ public class Resume {
         this.skills = skills;
         this.comment = comment;
         this.status = status;
+        this.user = user;
     }
 
     public Resume() {

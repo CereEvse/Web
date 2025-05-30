@@ -69,4 +69,5 @@ public class ResumeServiceImpl implements ResumeService {
     public Optional<Resume> findByUserId(Long userId) {
         return resumeRepository.findByUserId(userId);
     }
+
 }
