@@ -70,4 +70,5 @@ public class ResumeServiceImpl implements ResumeService {
         return resumeRepository.findByUserId(userId);
     }
 
+
 }

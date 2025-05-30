@@ -6,7 +6,6 @@ import com.example.demo.service.ResumeService;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,16 +23,24 @@ public class ProfileController {
 
     @GetMapping
     public String showPersonalAccount(Model model, Authentication authentication) {
-        String username = authentication.getName();
-        User currentUser = userService.findByLogin(username)
-                .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
+        try {
+            String username = authentication.getName();
+            User currentUser = userService.findByLogin(username)
+                    .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
 
-        // Получаем резюме пользователя
-        Resume userResume = resumeService.findByUserId(currentUser.getIdUser()).orElse(null);
+            // Получаем резюме пользователя
+            Optional<Resume> userResume = resumeService.findByUserId(currentUser.getIdUser());
 
-        model.addAttribute("user", currentUser);
-        model.addAttribute("resume", userResume); // может быть null
+            model.addAttribute("user", currentUser);
+            userResume.ifPresentOrElse(
+                    resume -> model.addAttribute("resume", resume),
+                    () -> model.addAttribute("resume", null)
+            );
 
-        return "lk";
+            return "lk";
+        } catch (Exception e) {
+            model.addAttribute("error", "Ошибка при загрузке профиля: " + e.getMessage());
+            return "lk";
+        }
     }
 }

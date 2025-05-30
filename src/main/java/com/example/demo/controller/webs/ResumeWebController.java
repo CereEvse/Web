@@ -160,7 +160,7 @@ public class ResumeWebController {
         Resume resume = resumeRepository.findById(id).orElseThrow();
         resumeRepository.delete(resume);
         redirectAttributes.addFlashAttribute("success", "Резюме успешно удалено");
-        return "redirect:/resume";
+        return "redirect:/lk";
     }
 
     @GetMapping("/pending")

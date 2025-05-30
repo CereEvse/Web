@@ -16,4 +16,5 @@ public interface ResumeRepository extends JpaRepository<Resume, Long>, PagingAnd
     Optional<Resume> findByUserId(@Param("userId") Long userId);
     List<Resume> findByStatus_StatusTitle(String statusTitle);
     List<Resume> findByStatus(Status status);
+
 }

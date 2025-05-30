@@ -13,4 +13,5 @@ public interface ResumeService {
     Optional<Resume> putResumeById(Long id, Resume updatedResume);
     void deleteResumeById(Long id);
     Optional<Resume> findByUserId(Long userId);
+
 }

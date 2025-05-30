@@ -23,7 +23,7 @@ public class SpringSecurityConfiguration {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/resume/pending").hasAuthority("ADMIN")
                         .requestMatchers("/lk", "/lk/**").authenticated()
-                        .requestMatchers("/login", "/registration").permitAll()
+                        .requestMatchers("/login", "/registration", "/").permitAll()
                         .requestMatchers("/resume/add").authenticated()
                         .anyRequest().authenticated()
                 )
