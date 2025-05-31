@@ -1,14 +1,15 @@
-<div th:fragment="header">
+
+<div th:fragment="header" class="header-container">
     <div class="container">
         <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <a href="/home" class="d-flex align-items-center text-dark text-decoration-none">
-                <h5 class="my-0 mr-md-auto font-weight-normal">Freelance</h5>
+            <a href="/home" class="d-flex align-items-center text-decoration-none">
+                <h5 class="my-0 mr-md-auto font-weight-normal header-link">Freelance</h5>
             </a>
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                <a class="me-3 py-2 text-dark text-decoration-none" href="/home">Главная</a>
-                <a class="me-3 py-2 text-dark text-decoration-none" href="/resume">Резюме</a>
-                <a class="btn btn-outline-primary me-2" href="/lk">Личный кабинет</a>
-                <a class="btn btn-outline-primary" href="/">Выход</a>
+                <a class="me-3 py-2 text-decoration-none header-nav-link" href="/home">Главная</a>
+                <a class="me-3 py-2 text-decoration-none header-nav-link" href="/resume">Резюме</a>
+                <button type="button" class="btn btn-outline-warning me-2 header-outline-button" onclick="location.href='/lk';">Личный кабинет</button>
+                <button type="button" class="btn btn-warning header-filled-button" onclick="location.href='/';">Выход</button>
             </nav>
         </div>
     </div>

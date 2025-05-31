@@ -8,6 +8,56 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* CSS переменные для тем */
+        :root {
+            /* Основные цвета */
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --primary-color: #2a52be;
+            --secondary-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e5e5e5;
+
+            /* Цвета шапки */
+            --header-bg: transparent;
+            --header-text: #333333;
+            --header-link-hover: #1a3a8f;
+            --header-outline-btn-text: #ffc107;
+            --header-outline-btn-border: #ffc107;
+            --header-outline-btn-hover-bg: #ffc107;
+            --header-outline-btn-hover-text: #000000;
+            --header-filled-btn-bg: #ffc107;
+            --header-filled-btn-text: #000000;
+            --header-filled-btn-hover-bg: #e0a800;
+
+            /* Цвета кнопки темы */
+            --theme-btn-bg: #333333;
+            --theme-btn-text: #ffffff;
+
+            /* Дополнительные цвета */
+            --rating-color: #ffc107;
+            --skill-bg: #f0f0f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --primary-color: #4a7bff;
+            --secondary-color: #2a2a2a;
+            --card-bg: #2a2a2a;
+            --border-color: #444444;
+
+            --header-bg: transparent;
+            --header-text: #f0f0f0;
+            --header-link-hover: #7ba1ff;
+
+            --theme-btn-bg: #f0f0f0;
+            --theme-btn-text: #333333;
+
+            --skill-bg: #3a3a3a;
+        }
+
+        /* Базовые стили */
         * {
             margin: 0;
             padding: 0;
@@ -16,7 +66,8 @@
         }
 
         body {
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
 
@@ -24,60 +75,113 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
-        .logo {
+        /* Стили шапки */
+        .header-container {
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .header-link {
+            color: var(--header-text) !important;
             font-size: 24px;
             font-weight: 700;
-            color: #2a52be;
             text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .header-link {
+                margin-bottom: 0;
+            }
+        }
+
+        .header-link:hover {
+            color: var(--header-link-hover) !important;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-nav-link {
+            color: var(--header-text) !important;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .header-nav-link:hover {
+            color: var(--header-link-hover) !important;
+        }
+
+        .header-outline-button {
+            color: var(--header-outline-btn-text) !important;
+            border-color: var(--header-outline-btn-border) !important;
+            padding: 8px 16px;
+        }
+
+        .header-outline-button:hover {
+            background-color: var(--header-outline-btn-hover-bg) !important;
+            color: var(--header-outline-btn-hover-text) !important;
+        }
+
+        .header-filled-button {
+            background-color: var(--header-filled-btn-bg) !important;
+            color: var(--header-filled-btn-text) !important;
+            padding: 8px 16px;
+        }
+
+        .header-filled-button:hover {
+            background-color: var(--header-filled-btn-hover-bg) !important;
+        }
+
+        /* Основное содержимое */
+        main {
+            padding: 30px 0;
+        }
+
+        /* Стили секций */
+        section {
+            padding: 60px 0;
         }
 
         .hero {
-            background-color: #f8f9fa;
-            padding: 80px 0;
+            background-color: var(--secondary-color);
             text-align: center;
+            padding: 80px 0;
         }
 
         .hero h1 {
             font-size: 42px;
             margin-bottom: 20px;
-            color: #222;
+            color: var(--text-color);
         }
 
         .hero p {
             font-size: 18px;
             max-width: 700px;
             margin: 0 auto 30px;
-            color: #555;
-        }
-
-        .search-bar {
-            max-width: 700px;
-            margin: 0 auto;
-            display: flex;
-        }
-
-        .search-bar input {
-            flex: 1;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px 0 0 4px;
-            font-size: 16px;
-        }
-
-        .search-bar button {
-            padding: 15px 25px;
-            background-color: #2a52be;
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .categories {
-            padding: 60px 0;
+            color: var(--text-color);
         }
 
         .section-title {
@@ -87,9 +191,14 @@
 
         .section-title h2 {
             font-size: 32px;
-            color: #222;
+            color: var(--text-color);
         }
 
+        .section-title p {
+            color: var(--text-color);
+        }
+
+        /* Карточки категорий */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -97,12 +206,13 @@
         }
 
         .category-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 8px;
             padding: 25px;
             text-align: center;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            color: var(--text-color);
         }
 
         .category-card:hover {
@@ -111,38 +221,35 @@
 
         .category-card i {
             font-size: 40px;
-            color: #2a52be;
+            color: var(--primary-color);
             margin-bottom: 15px;
         }
 
         .category-card h3 {
             margin-bottom: 10px;
+            font-size: 20px;
         }
 
-        .how-it-works {
-            background-color: #f8f9fa;
-            padding: 60px 0;
-        }
-
+        /* Как это работает */
         .steps {
             display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .step {
             flex: 1;
             min-width: 250px;
+            max-width: 300px;
             text-align: center;
-            padding: 0 15px;
-            margin-bottom: 20px;
         }
 
         .step-number {
             width: 50px;
             height: 50px;
-            background-color: #2a52be;
+            background-color: var(--primary-color);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -153,10 +260,12 @@
             font-weight: bold;
         }
 
-        .featured-freelancers {
-            padding: 60px 0;
+        .step h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
         }
 
+        /* Фрилансеры */
         .freelancers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -164,10 +273,11 @@
         }
 
         .freelancer-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            color: var(--text-color);
         }
 
         .freelancer-img {
@@ -183,15 +293,16 @@
 
         .freelancer-info h3 {
             margin-bottom: 5px;
+            font-size: 20px;
         }
 
         .freelancer-info p {
-            color: #666;
+            color: var(--text-color);
             margin-bottom: 15px;
         }
 
         .rating {
-            color: #ffc107;
+            color: var(--rating-color);
             margin-bottom: 15px;
         }
 
@@ -203,26 +314,73 @@
         }
 
         .skill {
-            background-color: #f0f0f0;
+            background-color: var(--skill-bg);
             padding: 5px 10px;
             border-radius: 4px;
             font-size: 14px;
+            color: var(--text-color);
         }
 
-        .view-profile {
-            display: inline-block;
-            padding: 8px 20px;
-            background-color: #2a52be;
+        /* Кнопка переключения темы */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: var(--theme-btn-bg);
+            color: var(--theme-btn-text);
+            transition: all 0.3s ease;
+        }
+
+        .theme-button:hover {
+            transform: scale(1.1);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-bar button {
+            padding: 15px 25px;
+            background-color: var(--primary-color);
             color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 16px;
         }
     </style>
 </head>
-<body>
-<header th:insert="blocks/header :: header"></header>
+<body data-theme="light">
+<header>
+    <div th:insert="blocks/header :: header"></div>
+</header>
+
 <main>
+    <!-- Кнопка переключения темы -->
+    <div class="theme-switcher">
+        <button class="theme-button" id="themeToggle">🌓</button>
+    </div>
+
     <section class="hero">
         <div class="container">
             <h1>Найдите идеального фрилансера или работу</h1>
@@ -314,20 +472,11 @@
                     <div class="freelancer-info">
                         <h3>Алексей Петров</h3>
                         <p>Веб-разработчик</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.7 (42 отзыва)</span>
-                        </div>
                         <div class="skills">
                             <span class="skill">HTML/CSS</span>
                             <span class="skill">JavaScript</span>
                             <span class="skill">React</span>
                         </div>
-                        <!-- <a href="#" class="view-profile">Профиль</a> -->
                     </div>
                 </div>
                 <div class="freelancer-card">
@@ -335,20 +484,11 @@
                     <div class="freelancer-info">
                         <h3>Елена Смирнова</h3>
                         <p>Графический дизайнер</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>5.0 (28 отзывов)</span>
-                        </div>
                         <div class="skills">
                             <span class="skill">Photoshop</span>
                             <span class="skill">Illustrator</span>
                             <span class="skill">Branding</span>
                         </div>
-                        <!-- <a href="#" class="view-profile">Профиль</a> -->
                     </div>
                 </div>
                 <div class="freelancer-card">
@@ -356,19 +496,10 @@
                     <div class="freelancer-info">
                         <h3>Дмитрий Иванов</h3>
                         <p>Копирайтер</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>4.2 (35 отзывов)</span>
-                        </div>
                         <div class="skills">
                             <span class="skill">SEO-тексты</span>
                             <span class="skill">Рерайтинг</span>
                         </div>
-                        <!-- <a href="#" class="view-profile">Профиль</a> -->
                     </div>
                 </div>
             </div>
@@ -376,8 +507,24 @@
     </section>
 </main>
 
-<div th:insert="blocks/footer :: footer"></div>
+<footer th:insert="blocks/footer :: footer"></footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Функция для переключения темы
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    }
+
+    // Инициализация темы при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    });
+</script>
 </body>
 </html>

@@ -14,15 +14,30 @@
             background-color: #28a745;
             color: white;
         }
+        .search-container {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 <div th:insert="~{blocks/header :: header}"></div>
 
 <div style="padding-top: 60px;" class="container mt-5">
-    <h1><i class="bi bi-file-earmark-check"></i>Проверенные резюме</h1>
+    <h1><i class="bi bi-file-earmark-check"></i> Проверенные резюме</h1>
 
-    <div th:each="resume : ${resumes}" class="card resume-card mt-3">
+    <!-- Поисковая строка для фильтрации по навыкам -->
+    <div class="search-container">
+        <div class="input-group mb-3">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" id="skillsSearch" class="form-control" placeholder="Поиск по навыкам..."
+                   onkeyup="filterResumes()">
+            <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">
+                <i class="bi bi-x-circle"></i> Очистить
+            </button>
+        </div>
+    </div>
+
+    <div th:each="resume : ${resumes}" class="card resume-card mt-3 resume-item">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 th:text="${resume.user.surname} + ' ' + ${resume.user.name} + ' ' + ${resume.user.middle_name}"></h5>
@@ -30,7 +45,7 @@
 
             <div class="mb-2">
                 <p><strong>Опыт работы:</strong> <span th:text="${resume.workExperience} + ' лет'"></span></p>
-                <p><strong>Ключевые навыки:</strong> <span th:text="${resume.skills}"></span></p>
+                <p><strong>Ключевые навыки:</strong> <span class="resume-skills" th:text="${resume.skills}"></span></p>
                 <p><strong>Портфолио:</strong> <span th:text="${resume.portfolio}"></span></p>
             </div>
 
@@ -48,5 +63,28 @@
 <div th:insert="~{blocks/footer :: footer}"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function filterResumes() {
+        const input = document.getElementById('skillsSearch');
+        const filter = input.value.toLowerCase();
+        const resumes = document.getElementsByClassName('resume-item');
+
+        for (let i = 0; i < resumes.length; i++) {
+            const skillsElement = resumes[i].querySelector('.resume-skills');
+            const skillsText = skillsElement.textContent || skillsElement.innerText;
+
+            if (skillsText.toLowerCase().indexOf(filter) > -1) {
+                resumes[i].style.display = "";
+            } else {
+                resumes[i].style.display = "none";
+            }
+        }
+    }
+
+    function clearSearch() {
+        document.getElementById('skillsSearch').value = '';
+        filterResumes();
+    }
+</script>
 </body>
 </html>

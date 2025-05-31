@@ -7,248 +7,380 @@
     <meta name="description" content="Фриланс-платформа для поиска специалистов и проектов. Разработка, дизайн, маркетинг, копирайтинг и другие услуги.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Тема по умолчанию (светлая) */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --primary-color: #2a52be;
+            --secondary-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e5e5e5;
+            --header-bg: #ffffff;
+            --header-text: #333333;
+            --header-link-hover: #1a3a8f;
+            --header-outline-btn-text: #ffc107;
+            --header-outline-btn-border: #ffc107;
+            --header-outline-btn-hover-bg: #ffc107;
+            --header-outline-btn-hover-text: #000000;
+            --header-filled-btn-bg: #ffc107;
+            --header-filled-btn-text: #000000;
+            --header-filled-btn-hover-bg: #e0a800;
+            --rating-color: #ffc107;
+            --skill-bg: #f0f0f0;
+            --footer-bg: #f8f9fa;
+            --footer-text: #6c757d;
+            --footer-border: #e5e5e5;
+        }
+
+        /* Темная тема */
+        .dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --primary-color: #4a7bff;
+            --secondary-color: #2a2a2a;
+            --card-bg: #2a2a2a;
+            --border-color: #444444;
+            --header-bg: #1a1a1a;
+            --header-text: #f0f0f0;
+            --header-link-hover: #7ba1ff;
+            --rating-color: #ffc107;
+            --skill-bg: #3a3a3a;
+            --footer-bg: #2a2a2a;
+            --footer-text: #adb5bd;
+            --footer-border: #444444;
+        }
+
+        /* Применение переменных */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Стили шапки */
+        .header-container {
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .header-link {
+            color: var(--header-text) !important;
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .header-link {
+                margin-bottom: 0;
+            }
+        }
+
+        .header-link:hover {
+            color: var(--header-link-hover) !important;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-nav-link {
+            color: var(--header-text) !important;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .header-nav-link:hover {
+            color: var(--header-link-hover) !important;
+        }
+
+        .header-outline-button {
+            color: var(--header-outline-btn-text) !important;
+            border-color: var(--header-outline-btn-border) !important;
+            padding: 8px 16px;
+            transition: all 0.3s;
+        }
+
+        .header-outline-button:hover {
+            background-color: var(--header-outline-btn-hover-bg) !important;
+            color: var(--header-outline-btn-hover-text) !important;
+        }
+
+        .header-filled-button {
+            background-color: var(--header-filled-btn-bg) !important;
+            color: var(--header-filled-btn-text) !important;
+            padding: 8px 16px;
+            transition: background-color 0.3s;
+        }
+
+        .header-filled-button:hover {
+            background-color: var(--header-filled-btn-hover-bg) !important;
+        }
+
+        /* Основное содержимое */
+        main {
+            padding: 30px 0;
+        }
+
+        /* Стили секций */
+        section {
+            padding: 60px 0;
+        }
+
+        .hero {
+            background-color: var(--secondary-color);
+            text-align: center;
+            padding: 80px 0;
+            transition: background-color 0.3s;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--text-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--text-color);
+        }
+
+        .section-title p {
+            color: var(--text-color);
+        }
+
+        /* Карточки категорий */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            color: var(--text-color);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-card i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        /* Как это работает */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        /* Фрилансеры */
+        .freelancers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .freelancer-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            color: var(--text-color);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .freelancer-img {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .freelancer-info {
+            padding: 20px;
+        }
+
+        .freelancer-info h3 {
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .freelancer-info p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .rating {
+            color: var(--rating-color);
+            margin-bottom: 15px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .skill {
+            background-color: var(--skill-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-color);
+            transition: background-color 0.3s;
+        }
+
+        /* Кнопка переключения темы */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: var(--header-filled-btn-bg);
+            color: var(--header-filled-btn-text);
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--header-filled-btn-hover-bg);
+        }
+
+        /* Стили футера */
+        footer {
+            background-color: var(--footer-bg);
+            border-top: 1px solid var(--footer-border);
+            padding: 30px 0;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .footer-container {
+            background-color: var(--footer-bg);
+        }
+
+        .footer-text {
+            color: var(--footer-text);
+            transition: color 0.3s;
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Arial', sans-serif;
-    }
-
-    body {
-        color: #333;
-        line-height: 1.6;
-    }
-
-    .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: 700;
-        color: #2a52be;
-        text-decoration: none;
-    }
-
-    nav ul {
-        display: flex;
-        list-style: none;
-    }
-
-    nav ul li {
-        margin-left: 25px;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-    }
-
-    .auth-buttons a {
-        margin-left: 15px;
-        padding: 8px 20px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-    .hero {
-        background-color: #f8f9fa;
-        padding: 80px 0;
-        text-align: center;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-        margin-bottom: 20px;
-        color: #222;
-    }
-
-    .hero p {
-        font-size: 18px;
-        max-width: 700px;
-        margin: 0 auto 30px;
-        color: #555;
-    }
-
-    .search-bar {
-        max-width: 700px;
-        margin: 0 auto;
-        display: flex;
-    }
-
-    .search-bar input {
-        flex: 1;
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px 0 0 4px;
-        font-size: 16px;
-    }
-
-    .search-bar button {
-        padding: 15px 25px;
-        background-color: #2a52be;
-        color: white;
-        border: none;
-        border-radius: 0 4px 4px 0;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .categories {
-        padding: 60px 0;
-    }
-
-    .section-title {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .section-title h2 {
-        font-size: 32px;
-        color: #222;
-    }
-
-    .categories-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-    }
-
-    .category-card {
-        background-color: white;
-        border-radius: 8px;
-        padding: 25px;
-        text-align: center;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
-    }
-
-    .category-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .category-card i {
-        font-size: 40px;
-        color: #2a52be;
-        margin-bottom: 15px;
-    }
-
-    .category-card h3 {
-        margin-bottom: 10px;
-    }
-
-    .how-it-works {
-        background-color: #f8f9fa;
-        padding: 60px 0;
-    }
-
-    .steps {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 40px;
-        flex-wrap: wrap;
-    }
-
-    .step {
-        flex: 1;
-        min-width: 250px;
-        text-align: center;
-        padding: 0 15px;
-        margin-bottom: 20px;
-    }
-
-    .step-number {
-        width: 50px;
-        height: 50px;
-        background-color: #2a52be;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .featured-freelancers {
-        padding: 60px 0;
-    }
-
-    .freelancers-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
-    }
-
-    .freelancer-card {
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-
-    .freelancer-img {
-        height: 200px;
-        background-color: #eee;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .freelancer-info {
-        padding: 20px;
-    }
-
-    .freelancer-info h3 {
-        margin-bottom: 5px;
-    }
-
-    .freelancer-info p {
-        color: #666;
-        margin-bottom: 15px;
-    }
-
-    .rating {
-        color: #ffc107;
-        margin-bottom: 15px;
-    }
-
-    .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 15px;
-    }
-
-    .skill {
-        background-color: #f0f0f0;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 14px;
-    }
-
-    .view-profile {
-        display: inline-block;
-        padding: 8px 20px;
-        background-color: #2a52be;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 500;
-    }
-
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <body>
-<header th:insert="blocks/header-anon :: header"></header>
-<main>
+<header>
+    <div th:insert="blocks/header-anon :: header"></div>
+</header>
 
+<main>
+    <!-- Кнопка переключения темы -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
 
     <section class="hero">
         <div class="container">
@@ -341,20 +473,11 @@
                     <div class="freelancer-info">
                         <h3>Алексей Петров</h3>
                         <p>Веб-разработчик</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.7 (42 отзыва)</span>
-                        </div>
                         <div class="skills">
                             <span class="skill">HTML/CSS</span>
                             <span class="skill">JavaScript</span>
                             <span class="skill">React</span>
                         </div>
-                        <!-- <a href="#" class="view-profile">Профиль</a> -->
                     </div>
                 </div>
                 <div class="freelancer-card">
@@ -362,14 +485,6 @@
                     <div class="freelancer-info">
                         <h3>Елена Смирнова</h3>
                         <p>Графический дизайнер</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>5.0 (28 отзывов)</span>
-                        </div>
                         <div class="skills">
                             <span class="skill">Photoshop</span>
                             <span class="skill">Illustrator</span>
@@ -382,14 +497,6 @@
                     <div class="freelancer-info">
                         <h3>Дмитрий Иванов</h3>
                         <p>Копирайтер</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <span>4.2 (35 отзывов)</span>
-                        </div>
                         <div class="skills">
                             <span class="skill">SEO-тексты</span>
                             <span class="skill">Рерайтинг</span>
@@ -399,10 +506,86 @@
             </div>
         </div>
     </section>
-
 </main>
 
-<div th:insert="blocks/footer :: footer"></div>
+<footer th:insert="blocks/footer :: footer" class="footer-container"></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Реализация паттерна Мост для тем
+
+    // Абстракция
+    class Theme {
+        constructor(implementation) {
+            this.implementation = implementation;
+        }
+
+        apply() {
+            this.implementation.applyTheme();
+        }
+
+        getIcon() {
+            return this.implementation.getIcon();
+        }
+    }
+
+    // Реализация для светлой темы
+    class LightThemeImplementation {
+        applyTheme() {
+            document.documentElement.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        }
+
+        getIcon() {
+            return 'fa-moon';
+        }
+    }
+
+    // Реализация для темной темы
+    class DarkThemeImplementation {
+        applyTheme() {
+            document.documentElement.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        }
+
+        getIcon() {
+            return 'fa-sun';
+        }
+    }
+
+    // Инициализация темы
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Проверяем сохраненную тему
+        const savedTheme = localStorage.getItem('theme') || 'light';
+
+        // Создаем соответствующую реализацию
+        let themeImplementation;
+        if (savedTheme === 'dark') {
+            themeImplementation = new DarkThemeImplementation();
+        } else {
+            themeImplementation = new LightThemeImplementation();
+        }
+
+        // Создаем абстракцию темы
+        let currentTheme = new Theme(themeImplementation);
+        currentTheme.apply();
+        themeIcon.className = 'fas ' + currentTheme.getIcon();
+
+        // Обработчик переключения темы
+        themeToggle.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark-theme')) {
+                currentTheme = new Theme(new LightThemeImplementation());
+            } else {
+                currentTheme = new Theme(new DarkThemeImplementation());
+            }
+
+            currentTheme.apply();
+            themeIcon.className = 'fas ' + currentTheme.getIcon();
+        });
+    });
+</script>
 </body>
 </html>
