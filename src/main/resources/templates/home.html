@@ -30,31 +30,29 @@
             --header-filled-btn-text: #000000;
             --header-filled-btn-hover-bg: #e0a800;
 
-            /* Цвета кнопки темы */
-            --theme-btn-bg: #333333;
-            --theme-btn-text: #ffffff;
-
             /* Дополнительные цвета */
             --rating-color: #ffc107;
             --skill-bg: #f0f0f0;
+            --footer-bg: #f8f9fa;
+            --footer-text: #6c757d;
+            --footer-border: #e5e5e5;
         }
 
-        [data-theme="dark"] {
+        .dark-theme {
             --bg-color: #1a1a1a;
             --text-color: #f0f0f0;
             --primary-color: #4a7bff;
             --secondary-color: #2a2a2a;
             --card-bg: #2a2a2a;
             --border-color: #444444;
-
             --header-bg: transparent;
             --header-text: #f0f0f0;
             --header-link-hover: #7ba1ff;
-
-            --theme-btn-bg: #f0f0f0;
-            --theme-btn-text: #333333;
-
+            --rating-color: #ffc107;
             --skill-bg: #3a3a3a;
+            --footer-bg: #2a2a2a;
+            --footer-text: #adb5bd;
+            --footer-border: #444444;
         }
 
         /* Базовые стили */
@@ -69,6 +67,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
@@ -83,6 +82,7 @@
             background-color: var(--header-bg);
             border-bottom: 1px solid var(--border-color);
             padding: 15px 0;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .header-content {
@@ -105,6 +105,7 @@
             font-weight: 700;
             text-decoration: none;
             margin-bottom: 10px;
+            transition: color 0.3s;
         }
 
         @media (min-width: 768px) {
@@ -128,6 +129,7 @@
             text-decoration: none;
             font-weight: 500;
             padding: 8px 0;
+            transition: color 0.3s;
         }
 
         .header-nav-link:hover {
@@ -138,6 +140,7 @@
             color: var(--header-outline-btn-text) !important;
             border-color: var(--header-outline-btn-border) !important;
             padding: 8px 16px;
+            transition: all 0.3s;
         }
 
         .header-outline-button:hover {
@@ -149,6 +152,7 @@
             background-color: var(--header-filled-btn-bg) !important;
             color: var(--header-filled-btn-text) !important;
             padding: 8px 16px;
+            transition: background-color 0.3s;
         }
 
         .header-filled-button:hover {
@@ -169,6 +173,7 @@
             background-color: var(--secondary-color);
             text-align: center;
             padding: 80px 0;
+            transition: background-color 0.3s;
         }
 
         .hero h1 {
@@ -211,7 +216,7 @@
             padding: 25px;
             text-align: center;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
             color: var(--text-color);
         }
 
@@ -278,6 +283,7 @@
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             color: var(--text-color);
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .freelancer-img {
@@ -319,34 +325,49 @@
             border-radius: 4px;
             font-size: 14px;
             color: var(--text-color);
+            transition: background-color 0.3s;
         }
 
         /* Кнопка переключения темы */
-        .theme-switcher {
+        .theme-toggle {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-        }
-
-        .theme-button {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: none;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            cursor: pointer;
+            background-color: var(--header-filled-btn-bg);
+            color: var(--header-filled-btn-text);
+            border: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            background-color: var(--theme-btn-bg);
-            color: var(--theme-btn-text);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .theme-button:hover {
+        .theme-toggle:hover {
             transform: scale(1.1);
+            background-color: var(--header-filled-btn-hover-bg);
+        }
+
+        /* Стили футера */
+        footer {
+            background-color: var(--footer-bg);
+            border-top: 1px solid var(--footer-border);
+            padding: 30px 0;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .footer-container {
+            background-color: var(--footer-bg);
+        }
+
+        .footer-text {
+            color: var(--footer-text);
+            transition: color 0.3s;
         }
 
         .search-bar input {
@@ -357,6 +378,7 @@
             font-size: 16px;
             background-color: var(--card-bg);
             color: var(--text-color);
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
         }
 
         .search-bar button {
@@ -367,19 +389,20 @@
             border-radius: 0 4px 4px 0;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
     </style>
 </head>
-<body data-theme="light">
+<body>
 <header>
     <div th:insert="blocks/header :: header"></div>
 </header>
 
 <main>
     <!-- Кнопка переключения темы -->
-    <div class="theme-switcher">
-        <button class="theme-button" id="themeToggle">🌓</button>
-    </div>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
 
     <section class="hero">
         <div class="container">
@@ -507,23 +530,83 @@
     </section>
 </main>
 
-<footer th:insert="blocks/footer :: footer"></footer>
+<footer th:insert="blocks/footer :: footer" class="footer-container"></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Функция для переключения темы
-    function toggleTheme() {
-        const currentTheme = document.body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+    // Реализация паттерна Мост для тем
+
+    // Абстракция
+    class Theme {
+        constructor(implementation) {
+            this.implementation = implementation;
+        }
+
+        apply() {
+            this.implementation.applyTheme();
+        }
+
+        getIcon() {
+            return this.implementation.getIcon();
+        }
     }
 
-    // Инициализация темы при загрузке
-    document.addEventListener('DOMContentLoaded', function() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.body.setAttribute('data-theme', savedTheme);
+    // Реализация для светлой темы
+    class LightThemeImplementation {
+        applyTheme() {
+            document.documentElement.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        }
 
-        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        getIcon() {
+            return 'fa-moon';
+        }
+    }
+
+    // Реализация для темной темы
+    class DarkThemeImplementation {
+        applyTheme() {
+            document.documentElement.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        }
+
+        getIcon() {
+            return 'fa-sun';
+        }
+    }
+
+    // Инициализация темы
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Проверяем сохраненную тему
+        const savedTheme = localStorage.getItem('theme') || 'light';
+
+        // Создаем соответствующую реализацию
+        let themeImplementation;
+        if (savedTheme === 'dark') {
+            themeImplementation = new DarkThemeImplementation();
+        } else {
+            themeImplementation = new LightThemeImplementation();
+        }
+
+        // Создаем абстракцию темы
+        let currentTheme = new Theme(themeImplementation);
+        currentTheme.apply();
+        themeIcon.className = 'fas ' + currentTheme.getIcon();
+
+        // Обработчик переключения темы
+        themeToggle.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark-theme')) {
+                currentTheme = new Theme(new LightThemeImplementation());
+            } else {
+                currentTheme = new Theme(new DarkThemeImplementation());
+            }
+
+            currentTheme.apply();
+            themeIcon.className = 'fas ' + currentTheme.getIcon();
+        });
     });
 </script>
 </body>
